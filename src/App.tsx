@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Button } from "./components/ui/button";
 import { Hero } from "./components/Hero";
 import { Projects } from "./components/Projects";
 import { About } from "./components/About";

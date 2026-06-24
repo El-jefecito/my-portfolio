@@ -1,7 +1,3 @@
-import { fadeUp } from "@/lib/animations";
-import type { ProjectType } from "@/types";
-import { motion } from "motion/react";
-
 // export const ProjectCard = ({
 //   imgSrc,
 //   projectLink,

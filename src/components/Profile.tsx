@@ -1,8 +1,8 @@
 import { socialLinks } from "@/constants";
-import { Button } from "./ui/button";
-import { fadeUp, staggerContainer } from "@/lib/animations";
-import { motion } from "motion/react";
-import { SparkleIcon } from "lucide-react";
+// import { Button } from "./ui/button";
+// import { fadeUp, staggerContainer } from "@/lib/animations";
+// import { motion } from "motion/react";
+// import { SparkleIcon } from "lucide-react";
 
 export const Profile = () => {
   return (

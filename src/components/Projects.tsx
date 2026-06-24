@@ -1,4 +1,4 @@
-import { projectsData, statsData } from "@/constants";
+import { projectsData } from "@/constants";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 import { motion } from "motion/react";
 import { SectionHeader } from "./SectionHeader";
@@ -21,7 +21,7 @@ export const Projects = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        variants={staggerContainer(0.5)}
+        variants={fadeUp}
       >
         {projectsData.map((project, i) => (
           <ProjectCard

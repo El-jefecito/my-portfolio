@@ -16,25 +16,18 @@ import type {
  */
 import {
   Briefcase,
-  Facebook,
-  FacebookIcon,
-  FileText,
   GithubIcon,
   Globe,
   Home,
-  Instagram,
   Layers,
   LucideLinkedin,
   LucideTwitter,
   Mail,
-  MessageCircle,
   Palette,
   Rocket,
   Settings,
   Smartphone,
-  Twitter,
   User,
-  Youtube,
 } from "lucide-react";
 
 const navLinks: LinksType[] = [

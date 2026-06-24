@@ -1,10 +1,8 @@
-import { fadeUp, staggerContainer } from "@/lib/animations";
+import { staggerContainer } from "@/lib/animations";
 import { motion } from "motion/react";
 import { SectionHeader } from "./SectionHeader";
-import { Button } from "./ui/button";
-import { education, experience, tools } from "@/constants";
-import { ServiceCard } from "./ServiceCard";
-import { ExpCard } from "./ExpCard";
+import { tools } from "@/constants";
+
 import { ToolsCard } from "./ToolsCard";
 
 export const Resume = () => {
