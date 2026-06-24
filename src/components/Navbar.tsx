@@ -68,18 +68,18 @@ export const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full h-14 z-50 transition-all duration-300 ${
+        className={`fixed  top-0 left-0 w-full h-14 z-50 transition-all duration-300 ${
           scrolled
             ? "bg-white/60 dark:bg-white/5 dark:backdrop-blur-xl dark:border-white/10 backdrop-blur-md shadow-md border-b border-border"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 h-full flex justify-between items-center">
+        <div className="max-w-6xl mx-auto px-4 h-full flex justify-between items-center">
           <Button
             variant="ghost"
             size="icon"
             onClick={toggleTheme}
-            className="border-2 border-border bg-card hover:border-primary hover:text-primary text-foreground rounded-full p-2 cursor-pointer"
+            className="border border-border bg-card hover:border-primary hover:text-primary text-foreground rounded-full py-5 px-5 cursor-pointer"
           >
             {isDark ? <SunIcon size={18} /> : <MoonIcon size={18} />}
           </Button>
@@ -88,7 +88,7 @@ export const Navbar = () => {
             variant="ghost"
             size="icon"
             onClick={() => setOpen(true)}
-            className="border-2 hover:border-primary bg-card py-5 px-5 rounded-full hover:text-primary text-foreground cursor-pointer"
+            className="border hover:border-primary bg-card py-5 px-5 rounded-full hover:text-primary text-foreground cursor-pointer"
           >
             <MenuIcon size={30} />
           </Button>

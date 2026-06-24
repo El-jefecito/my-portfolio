@@ -8,9 +8,9 @@ export const Profile = () => {
   return (
     <aside
       id="hero"
-      className="relative overflow-hidden max-w-3xl border border-border/50 m-6 -mb-5 bg-card text-foreground p-6 rounded-lg lg:sticky lg:left-0 lg:top-20 lg:w-96"
+      className="relative overflow-hidden max-w-3xl mx-3 mb-0 mt-6 sm:m-6 sm:-mb-5 bg-card text-foreground px-3 py-6 sm:px-6 rounded-lg lg:sticky lg:left-0 lg:top-20 lg:w-96"
     >
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3">
         {/* Name + title: stacked on mobile, spaced on larger screens */}
         <div className="flex flex-col gap-1 mt-3.5">
           <div className="flex items-center justify-between flex-wrap gap-2">
