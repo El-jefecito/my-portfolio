@@ -1,0 +1,38 @@
+import { fadeUp, staggerContainer } from "@/lib/animations";
+import { motion } from "motion/react";
+import { SectionHeader } from "./SectionHeader";
+import { Button } from "./ui/button";
+import { services } from "@/constants";
+import { ServiceCard } from "./ServiceCard";
+
+export const Services = () => {
+  return (
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={staggerContainer(0)}
+      className="mt-20 scroll-mt-10 -mb-5"
+      id="services"
+    >
+      <SectionHeader
+        subtitle="Services"
+        title="Building With Purpose & Precision"
+      />
+
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer(0.5)}
+        className="grid md:grid-cols-2 gap-6 mt-10"
+      >
+        {services.map((service) => (
+          <motion.div key={service.title} variants={fadeUp}>
+            <ServiceCard service={service} />
+          </motion.div>
+        ))}
+      </motion.div>
+    </motion.section>
+  );
+};
