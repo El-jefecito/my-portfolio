@@ -24,7 +24,7 @@ export const Services = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={staggerContainer(0.5)}
-        className="grid md:grid-cols-2 gap-6 mt-10"
+        className="grid md:grid-cols-2 gap-4 mt-8"
       >
         {services.map((service) => (
           <motion.div key={service.title} variants={fadeUp}>

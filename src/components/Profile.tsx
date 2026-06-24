@@ -8,7 +8,7 @@ export const Profile = () => {
   return (
     <aside
       id="hero"
-      className="relative overflow-hidden max-w-3xl mx-3 mb-0 mt-6 sm:m-6 sm:-mb-5 bg-card text-foreground px-3 py-6 sm:px-6 rounded-lg lg:sticky lg:left-0 lg:top-20 lg:w-96"
+      className="relative overflow-hidden max-w-3xl mx-3 mt-6 sm:m-6 -mb-8 bg-card text-foreground px-3 py-6 sm:px-6 rounded-lg lg:sticky lg:left-0 lg:top-20 lg:w-96"
     >
       <div className="flex flex-col gap-3">
         {/* Name + title: stacked on mobile, spaced on larger screens */}
