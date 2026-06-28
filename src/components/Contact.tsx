@@ -1,13 +1,15 @@
 import { motion } from "motion/react";
 import { useForm } from "react-hook-form";
 import { FormControl, Form, FormField, FormItem, FormMessage } from "./ui/form";
-
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { SectionHeader } from "./SectionHeader";
 import { fadeUp } from "@/lib/animations";
 import emailjs from "@emailjs/browser";
+import toast from "react-hot-toast";
+import { Loader2 } from "lucide-react";
+import { useState } from "react";
 
 type ContactFormValues = {
   name: string;
@@ -18,6 +20,7 @@ type ContactFormValues = {
 };
 
 export const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<ContactFormValues>({
     defaultValues: {
       name: "",
@@ -26,13 +29,15 @@ export const Contact = () => {
       phone: "",
       message: "",
     },
+    mode: "onBlur",
   });
 
   const onSubmit = async (values: ContactFormValues) => {
+    setIsSubmitting(true);
     try {
-      const result = await emailjs.send(
-        "service_8vojj7m", // EmailJS service ID
-        "template_6ixh92u", // EmailJS template ID
+      await emailjs.send(
+        "service_d946p1h",
+        "template_6ixh92u",
         {
           name: values.name,
           company: values.company,
@@ -40,15 +45,15 @@ export const Contact = () => {
           phone: values.phone,
           message: values.message,
         },
-        "1Nw3ZGfBulwgNO0K4" // EmailJS public key
+        "1Nw3ZGfBulwgNO0K4",
       );
-
-      console.log("Message sent", result.text);
-      form.reset(); // clears the form
-      alert("Message sent successfully!");
+      form.reset();
+      toast.success("Message sent successfully! I'll get back to you soon. 🎉");
     } catch (error) {
       console.error("Email error:", error);
-      alert("Failed to send message.");
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -75,6 +80,7 @@ export const Contact = () => {
             <FormField
               control={form.control}
               name="name"
+              rules={{ required: "Name is required" }}
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormControl>
@@ -84,7 +90,6 @@ export const Contact = () => {
                       className="border-0"
                     />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
@@ -94,6 +99,7 @@ export const Contact = () => {
           <FormField
             control={form.control}
             name="company"
+            rules={{ required: "Company name is required" }}
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
@@ -103,7 +109,6 @@ export const Contact = () => {
                     className="border-0"
                   />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
@@ -112,6 +117,13 @@ export const Contact = () => {
           <FormField
             control={form.control}
             name="email"
+            rules={{
+              required: "Email is required",
+              pattern: {
+                value: /^\S+@\S+\.\S+$/,
+                message: "Enter a valid email",
+              },
+            }}
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
@@ -122,7 +134,6 @@ export const Contact = () => {
                     className="border-0"
                   />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
@@ -131,6 +142,7 @@ export const Contact = () => {
           <FormField
             control={form.control}
             name="phone"
+            rules={{ required: "Phone number is required" }}
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
@@ -141,7 +153,6 @@ export const Contact = () => {
                     className="border-0"
                   />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
@@ -150,6 +161,7 @@ export const Contact = () => {
           <FormField
             control={form.control}
             name="message"
+            rules={{ required: "Message is required" }}
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
@@ -159,14 +171,24 @@ export const Contact = () => {
                     {...field}
                   />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button type="submit" size="lg">
-            Send Message
+          <Button
+            type="submit"
+            size="lg"
+            disabled={isSubmitting || !form.formState.isValid}
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Sending...
+              </>
+            ) : (
+              "Send Message"
+            )}
           </Button>
         </form>
       </Form>
