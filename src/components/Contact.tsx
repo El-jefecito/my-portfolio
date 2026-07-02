@@ -9,7 +9,7 @@ import { fadeUp } from "@/lib/animations";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type ContactFormValues = {
   name: string;
@@ -32,25 +32,50 @@ export const Contact = () => {
     mode: "onBlur",
   });
 
+  // Initialize EmailJS on mount
+  useEffect(() => {
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (publicKey && publicKey !== "your_public_key") {
+      emailjs.init(publicKey);
+    }
+  }, []);
+
   const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      await emailjs.send(
-        "service_d946p1h",
-        "template_6ixh92u",
-        {
-          name: values.name,
-          company: values.company,
-          email: values.email,
-          phone: values.phone,
-          message: values.message,
-        },
-        "1Nw3ZGfBulwgNO0K4",
-      );
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+
+      // Check if credentials are set
+      if (
+        !serviceId ||
+        !templateId ||
+        serviceId === "your_service_id" ||
+        templateId === "your_template_id"
+      ) {
+        console.error("EmailJS credentials not configured");
+        toast.error(
+          "Email configuration error. Please contact the site owner.",
+        );
+        setIsSubmitting(false);
+        return;
+      }
+
+      await emailjs.send(serviceId, templateId, {
+        name: values.name,
+        company: values.company,
+        email: values.email,
+        phone: values.phone,
+        message: values.message,
+      });
+
       form.reset();
       toast.success("Message sent successfully! I'll get back to you soon. 🎉");
     } catch (error) {
       console.error("Email error:", error);
+      if (error instanceof Error) {
+        console.error("Error details:", error.message);
+      }
       toast.error("Failed to send message. Please try again.");
     } finally {
       setIsSubmitting(false);

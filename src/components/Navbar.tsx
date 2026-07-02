@@ -3,23 +3,18 @@ import { Button } from "./ui/button";
 import { MenuIcon, MoonIcon, SunIcon, XIcon } from "lucide-react";
 import { navLinks, socialLinks } from "@/constants";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/hooks/useTheme";
 
 export const Navbar = () => {
   const [active, setActive] = useState("#hero");
   const [scrolled, setScrolled] = useState(false);
-  const [isDark, setIsDark] = useState(true);
   const [open, setOpen] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme") ?? "dark";
-    setIsDark(saved === "dark");
-    document.documentElement.classList.toggle("dark", saved === "dark");
   }, []);
 
   // prevent body scroll when menu is open
@@ -29,13 +24,6 @@ export const Navbar = () => {
       document.body.style.overflow = "";
     };
   }, [open]);
-
-  const toggleTheme = () => {
-    const newIsDark = !isDark;
-    setIsDark(newIsDark);
-    document.documentElement.classList.toggle("dark", newIsDark);
-    localStorage.setItem("theme", newIsDark ? "dark" : "light");
-  };
 
   const renderedLinks = useMemo(
     () =>
@@ -73,6 +61,7 @@ export const Navbar = () => {
             ? "bg-white/60 dark:bg-white/5 dark:backdrop-blur-xl dark:border-white/10 backdrop-blur-md shadow-md border-b border-border"
             : "bg-transparent"
         }`}
+        aria-label="Main navigation"
       >
         <div className="max-w-6xl mx-auto px-4 h-full flex justify-between items-center">
           <Button
@@ -80,6 +69,7 @@ export const Navbar = () => {
             size="icon"
             onClick={toggleTheme}
             className="border border-border bg-card hover:border-primary hover:text-primary text-foreground rounded-full py-5 px-5 cursor-pointer"
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {isDark ? <SunIcon size={18} /> : <MoonIcon size={18} />}
           </Button>
@@ -89,6 +79,7 @@ export const Navbar = () => {
             size="icon"
             onClick={() => setOpen(true)}
             className="border hover:border-primary bg-card py-5 px-5 rounded-full hover:text-primary text-foreground cursor-pointer"
+            aria-label="Open navigation menu"
           >
             <MenuIcon size={30} />
           </Button>

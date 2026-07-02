@@ -14,7 +14,10 @@ export const Profile = () => {
         {/* Name + title: stacked on mobile, spaced on larger screens */}
         <div className="flex flex-col gap-1 mt-3.5">
           <div className="flex items-center justify-between flex-wrap gap-2">
-            <span className="text-xs font-light bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-400 px-3 py-1 rounded-full whitespace-nowrap">
+            <span
+              className="text-xs font-light bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-400 px-3 py-1 rounded-full whitespace-nowrap"
+              aria-label="Status: Available for work"
+            >
               ● Available
             </span>
           </div>
@@ -29,9 +32,10 @@ export const Profile = () => {
           <img
             src="/avatar.jpg"
             alt="Adelaja Tobiloba"
+            loading="lazy"
             className="w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-card via-transparent to-transparent" />
         </div>
 
         {/* Social links */}
@@ -42,6 +46,7 @@ export const Profile = () => {
               <a
                 href={social.link}
                 key={i}
+                aria-label={`Visit my ${social.label}`}
                 className="flex-1 flex items-center justify-center hover:text-primary border-2 border-border p-2 rounded-full hover:border-primary transition duration-200"
               >
                 <Icon className="size-5" />

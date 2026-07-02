@@ -1,0 +1,10 @@
+# Allow search engines to crawl the entire site
+User-agent: *
+Allow: /
+
+# Sitemap location (create sitemap.xml in the future)
+Sitemap: https://yourportfolio.com/sitemap.xml
+
+# Prevent crawling unnecessary files
+Disallow: /node_modules/
+Disallow: /.env

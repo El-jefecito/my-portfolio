@@ -48,6 +48,7 @@ export const ProjectCard = ({
         <img
           src={imgSrc}
           alt={title}
+          loading="lazy"
           className="rounded-xl transition group-hover:scale-105"
         />
       </a>

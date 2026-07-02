@@ -43,7 +43,7 @@ const navLinks: LinksType[] = [
     link: "#services",
     icon: Settings,
   },
-  // { label: "Resume", link: "#resume", icon: FileText },
+  { label: "Resume", link: "#resume", icon: Briefcase },
   { label: "Contact", link: "#contact", icon: Mail },
 ];
 
@@ -96,8 +96,8 @@ const projectsData: ProjectType[] = [
   {
     imgSrc: "/images/bookstore.png.png",
     title: "Bookstore e-commerce",
-    github: "https://github.com/yourusername/project4",
-    demo: "https://musify-5al0.onrender.com/",
+    github: "https://github.com/El-jefecito/booknesta",
+    demo: "https://booknesta-69qq.vercel.app/",
   },
   {
     imgSrc: "/images/Weight_less.jpg",
